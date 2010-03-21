@@ -1,0 +1,10 @@
+## GitHub Tutorials ##
+
+http://loianegroner.com/2009/11/tutorial-using-the-egit-eclipse-plugin-with-github/
+http://github.com/guides/using-the-egit-eclipse-plugin-with-github
+http://www.vogella.de/articles/EGit/article.html
+
+
+## Project URL For Eclipse ##
+
+git+ssh://git@github.com/myn/VogueTools

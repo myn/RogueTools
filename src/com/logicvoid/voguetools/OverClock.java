@@ -11,7 +11,7 @@ import android.util.Log;
 
 
 /**
- * @author Derek Reynolds (myn_2000@yahoo.com) 
+ * @author Derek Reynolds (myn) 
  * 
  */
 public class OverClock {

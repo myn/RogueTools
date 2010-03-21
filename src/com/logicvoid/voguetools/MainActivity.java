@@ -18,6 +18,10 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * @author Derek Reynolds
+ * 
+ */
 public class MainActivity extends TabActivity {
 	 public static Activity me = null; 
 	
