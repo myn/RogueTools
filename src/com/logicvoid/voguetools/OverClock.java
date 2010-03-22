@@ -16,12 +16,6 @@ import android.util.Log;
  */
 public class OverClock {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-	}
 	
 	// Public methods
 	
