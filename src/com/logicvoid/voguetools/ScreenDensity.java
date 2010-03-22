@@ -14,7 +14,7 @@ public class ScreenDensity {
 
 	public static int getDensityDPI(Context context) {
 
-		int returnValue = Integer.MIN_VALUE;
+		int returnValue = 0;
 
 		try {
 
