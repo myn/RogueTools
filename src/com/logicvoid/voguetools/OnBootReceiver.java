@@ -20,9 +20,7 @@ public class OnBootReceiver extends BroadcastReceiver {
 			// Do your stuff for example, start a background service directly
 			// here
 			Toast.makeText(context, "DEBUG: VogueTools_BOOT_COMPLETED",
-					Toast.LENGTH_LONG).show();
-			Toast.makeText(MainActivity.me, "MainActivity.me",
-					Toast.LENGTH_LONG).show();
+					Toast.LENGTH_LONG).show();			
 
 			String actionText = "";
 
@@ -36,32 +34,42 @@ public class OnBootReceiver extends BroadcastReceiver {
 				 */
 
 				// get clockSpeed configuration preference
+				Log.d("VogueTools", "Getting prefClockSpeed preferences");
 				String prefClockSpeed = Preferences
 						.ReadFromFile("/data/data/com.logicvoid.voguetools/prefClockSpeed");
 
+				Log.d("VogueTools", "Determining if prefClockSpeed  is empty");			
 				if (prefClockSpeed == "") {
 					// if no preference is found, use current clock speed as
 					// default
+				
+					Log.d("VogueTools", "No prefClockSpeed found. use current clock speed as default");
+					Toast.makeText(context, "DEBUG: No prefClockSpeed found. use current clock speed as default",
+							Toast.LENGTH_LONG).show();
 					prefClockSpeed = OverClock.getClockSpeed();
 				}
-
+				
+				Log.d("VogueTools", "Casting prefClockSpeed to int");
 				int freq = Integer.valueOf(prefClockSpeed);
 
+				Log.d("VogueTools", "setClockSpeed(" + String.valueOf(freq) +")");				
 				if (OverClock.setClockSpeed(freq) == true) {
+					Log.d("VogueTools", "Changed clock frequency");	
+					
 					actionText = "VogueTools: Changed clock frequency to "
 							+ String.valueOf(freq) + " MHz";
 
 				} else {
+					Log.d("VogueTools", "Unable to change clock frequency");	
 					actionText = "VogueTools: Unable to change clock frequency";
 				}
 
 			} catch (Exception e) {
-
+				Log.d("VogueTools", "VougeTools Error: " + e.toString());
 				actionText = "VougeTools Error: " + e.toString();
 			}
-
-			Toast.makeText(MainActivity.me, actionText, Toast.LENGTH_LONG)
-					.show();
+			Log.d("VogueTools", "Finished with OnBootReceiver");
+			Toast.makeText(context, actionText, Toast.LENGTH_LONG).show();
 
 		}
 	}
