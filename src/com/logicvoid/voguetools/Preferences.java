@@ -7,6 +7,7 @@ import java.io.InputStream;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
 
 
@@ -20,21 +21,21 @@ public class Preferences {
 	
 
 	private static final String PREFS_NAME = "VogueTools";
+	
+	public static final Boolean DEBUG = false;  // flag to enable/disable debugging
 
-	public static Boolean setClockSpeedPref(int freq) {
+	public static Boolean setClockSpeedPref(int freq, Context appContext) {
 
 		// setup value to return
 		Boolean returnValue = false;
 		
 		
 
-		try {
-			Context appContext = MainActivity.me.getApplicationContext();
+		try {			
 			
 			// Save user preferences. We need an Editor object to
 			// make changes. All objects are from android.context.Context
-			//SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
-			//SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 2 ); // 2 = MODE_WORLD_WRITEABLE	
+			
 			SharedPreferences settings = appContext.getSharedPreferences(PREFS_NAME, 2 ); // 2 = MODE_WORLD_WRITEABLE
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putInt("clockSpeedPref", freq);
@@ -53,21 +54,17 @@ public class Preferences {
 
 	}
 
-	public static int getClockSpeedPref(int defaultclockspeed) {
+	public static int getClockSpeedPref(int defaultclockspeed, Context appContext) {
 
-		// setup value to return
-		//int returnValue = defaultclockspeed;
-		int returnValue = 0;
+		// setup value to return		
+		int returnValue = defaultclockspeed;
 		
 		 
 
 		try {
-			 Context appContext = MainActivity.me.getApplicationContext();
 			
-			
-			// SharedPreferences settings = context.getSharedPreferences( PREFS_NAME, 0);
-			//SharedPreferences settings = context.getSharedPreferences( PREFS_NAME, 2);	// 2 = MODE_WORLD_WRITEABLE	
 			SharedPreferences settings = appContext.getSharedPreferences( PREFS_NAME, 2);	// 2 = MODE_WORLD_WRITEABLE
+			
 			
 			int clockSpeed = settings.getInt("clockSpeedPref", 	defaultclockspeed);
 

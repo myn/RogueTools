@@ -13,63 +13,61 @@ import android.widget.Toast;
 
 public class OnBootReceiver extends BroadcastReceiver {
 
+	private static final boolean DEBUG = Preferences.DEBUG;
+
+	
+	
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		if ("android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
-			Log.d("VogueTools", "Got the Boot Event>>>");
+			if(DEBUG) Log.d("VogueTools", "Got the Boot Event>>>");
 			// Do your stuff for example, start a background service directly
 			// here
-			Toast.makeText(context, "DEBUG: VogueTools_BOOT_COMPLETED",
+			if(DEBUG) Toast.makeText(context, "DEBUG: VogueTools_BOOT_COMPLETED",
 					Toast.LENGTH_LONG).show();			
 
 			String actionText = "";
+			
 
 			// Set Clock Speed
 			try {
-
+								
 				/*
 				 * TODO: Delay writing of Clock Speed from preferences on start
 				 * to allow users enough time to adjust clock speed if it was
 				 * set to high
 				 */
 
-				// get clockSpeed configuration preference
-				Log.d("VogueTools", "Getting prefClockSpeed preferences");
-				String prefClockSpeed = Preferences
-						.ReadFromFile("/data/data/com.logicvoid.voguetools/prefClockSpeed");
-
-				Log.d("VogueTools", "Determining if prefClockSpeed  is empty");			
-				if (prefClockSpeed == "") {
-					// if no preference is found, use current clock speed as
-					// default
+				//String prefClockSpeed = Preferences.ReadFromFile("/data/data/com.logicvoid.voguetools/prefClockSpeed");
+				// get current clockSpeed 
+				if(DEBUG) Log.d("VogueTools", "Getting current clockspeed");			
+				String CurrentClockSpeed = OverClock.getClockSpeed(); 
 				
-					Log.d("VogueTools", "No prefClockSpeed found. use current clock speed as default");
-					Toast.makeText(context, "DEBUG: No prefClockSpeed found. use current clock speed as default",
-							Toast.LENGTH_LONG).show();
-					prefClockSpeed = OverClock.getClockSpeed();
-				}
-				
-				Log.d("VogueTools", "Casting prefClockSpeed to int");
+				// get clockSpeed configuration preference using current clock speed as default if no preferences have been set
+				if(DEBUG) Log.d("VogueTools", "Getting prefClockSpeed preferences");				
+				int prefClockSpeed = Preferences.getClockSpeedPref(Integer.valueOf(CurrentClockSpeed),context); 
+														
+				if(DEBUG) Log.d("VogueTools", "Casting prefClockSpeed to int");
 				int freq = Integer.valueOf(prefClockSpeed);
 
-				Log.d("VogueTools", "setClockSpeed(" + String.valueOf(freq) +")");				
+				if(DEBUG) Log.d("VogueTools", "setClockSpeed(" + String.valueOf(freq) +")");				
 				if (OverClock.setClockSpeed(freq) == true) {
-					Log.d("VogueTools", "Changed clock frequency");	
+					if(DEBUG) Log.d("VogueTools", "Changed clock frequency");	
 					
 					actionText = "VogueTools: Changed clock frequency to "
 							+ String.valueOf(freq) + " MHz";
 
 				} else {
-					Log.d("VogueTools", "Unable to change clock frequency");	
+					if(DEBUG) Log.d("VogueTools", "Unable to change clock frequency");	
 					actionText = "VogueTools: Unable to change clock frequency";
 				}
 
 			} catch (Exception e) {
 				Log.d("VogueTools", "VougeTools Error: " + e.toString());
 				actionText = "VougeTools Error: " + e.toString();
-			}
-			Log.d("VogueTools", "Finished with OnBootReceiver");
+			}			
 			Toast.makeText(context, actionText, Toast.LENGTH_LONG).show();
+			if(DEBUG) Log.d("VogueTools", "Finished with OnBootReceiver");
 
 		}
 	}

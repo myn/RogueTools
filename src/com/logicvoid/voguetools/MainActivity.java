@@ -21,7 +21,8 @@ import android.widget.Toast;
 public class MainActivity extends TabActivity {
 	public static Activity me = null;
 
-	Context context = this;
+	private static final boolean DEBUG = Preferences.DEBUG;
+
 
 	/** Called when the activity is first created. */
 	@Override
@@ -92,13 +93,14 @@ public class MainActivity extends TabActivity {
 		OverClockSeekBar.setProgress(Integer.parseInt(CPUSpeed));
 
 		// Preferences test begin
-		// int prefCurrentCPUSpeed = Preferences.getClockSpeedPref(400, getBaseContext());
+		 int prefCurrentCPUSpeed = Preferences.getClockSpeedPref(400, getApplicationContext() );
+		 
+		 
 
 
-		String prefCurrentCPUSpeed = Preferences
-				.ReadFromFile("/data/data/com.logicvoid.voguetools/prefClockSpeed");
-		Toast.makeText(getBaseContext(),
-				"Current Pref: " + prefCurrentCPUSpeed, Toast.LENGTH_LONG)
+		//String prefCurrentCPUSpeed = Preferences.ReadFromFile("/data/data/com.logicvoid.voguetools/prefClockSpeed");
+		 if(DEBUG) Toast.makeText(getBaseContext(),
+				"Current Pref: " + String.valueOf(prefCurrentCPUSpeed), Toast.LENGTH_LONG)
 				.show();
 		// Preferences test end
 		
@@ -164,11 +166,8 @@ public class MainActivity extends TabActivity {
 					// Save preferences
 					// TODO: confirm preferences were set correctly by checking
 					// for return value
-					// Preferences.setClockSpeedPref(freq, context);
-					Preferences
-							.WriteToFile(
-									"/data/data/com.logicvoid.voguetools/prefClockSpeed",
-									String.valueOf(freq));
+					 Preferences.setClockSpeedPref(freq, getApplicationContext());
+					//Preferences.WriteToFile("/data/data/com.logicvoid.voguetools/prefClockSpeed",String.valueOf(freq));
 
 				} else {
 					actionText = "Unable to change clock frequency";
@@ -225,4 +224,7 @@ public class MainActivity extends TabActivity {
 		}
 	};
 
+	
+
+	
 }
