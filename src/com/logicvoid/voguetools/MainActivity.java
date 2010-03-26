@@ -6,13 +6,17 @@ import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 /**
  * @author Derek Reynolds (myn)
@@ -54,7 +58,12 @@ public class MainActivity extends TabActivity {
 		// Wire up Set Clock Speed button click events
 		Button btnSetClockSpeed = (Button) findViewById(R.id.btnOverClock);
 		btnSetClockSpeed.setOnClickListener(btnSetClockSpeed_OnClick);
+		
+		// Wire up Set On Boot checkbox onCheckedChange events
+		CheckBox cbSetClockOnBoot = (CheckBox) findViewById(R.id.cbSetClockOnBoot);
+		cbSetClockOnBoot.setOnCheckedChangeListener(cbSetClockOnBoot_onCheckedChangeListener);
 
+		
 		// Get current CPU Speed
 		String CPUSpeed = OverClock.getClockSpeed();
 
@@ -90,15 +99,15 @@ public class MainActivity extends TabActivity {
 				});
 
 		// initialize Over Clock SeekBar to current CPU clock speed
-		OverClockSeekBar.setProgress(Integer.parseInt(CPUSpeed));
+		OverClockSeekBar.setProgress(Integer.parseInt(CPUSpeed));		
+		
+		// initialize Set On Boot checkbox to current setting
+		cbSetClockOnBoot.setChecked(Preferences.getOverclockOnBootPref(getApplicationContext()));
 
 		// Preferences test begin
 		 int prefCurrentCPUSpeed = Preferences.getClockSpeedPref(400, getApplicationContext() );
 		 
-		 
-
-
-		//String prefCurrentCPUSpeed = Preferences.ReadFromFile("/data/data/com.logicvoid.voguetools/prefClockSpeed");
+		 //String prefCurrentCPUSpeed = Preferences.ReadFromFile("/data/data/com.logicvoid.voguetools/prefClockSpeed");
 		 if(DEBUG) Toast.makeText(getBaseContext(),
 				"Current Pref: " + String.valueOf(prefCurrentCPUSpeed), Toast.LENGTH_LONG)
 				.show();
@@ -223,8 +232,63 @@ public class MainActivity extends TabActivity {
 			
 		}
 	};
+	
 
 	
+	/*
+	 * Create an anonymous class to act as a checked change listener for
+	 * "Set On Boot" checkbox
+	 */
+	private OnCheckedChangeListener cbSetClockOnBoot_onCheckedChangeListener = new OnCheckedChangeListener() {
+		
+		@Override
+		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+			
+			try {
+				// Set the OverClock Boot preference based upon selection
+				Preferences.setOverclockOnBootPref(isChecked,
+						getApplicationContext());
+
+				// Set the clock speed to whatever the current seekbar is
+				// configured to
+				try {
+					// Get value of OverClock SeekBar
+					SeekBar OverClockSeekBar = (SeekBar) findViewById(R.id.SeekBarOverClock);
+					int freq = OverClockSeekBar.getProgress();
+
+					if (OverClock.setClockSpeed(freq) == true) {
+
+						// Save Clock Speed preferences
+						Preferences.setClockSpeedPref(freq,
+								getApplicationContext());
+
+					} else {
+
+						Toast.makeText(getBaseContext(),
+								"Unable to change clock frequency",
+								Toast.LENGTH_LONG).show();
+
+					}
+				  // Catch setClockSpeed and setClockSpeedPref errors
+				} catch (Exception ex) {
+
+					Toast.makeText(getBaseContext(), "Error: " + ex.toString(),
+							Toast.LENGTH_LONG).show();
+					Log.d("VogueTools", ex.toString());
+
+				}
+
+			// Catch Preferences.setOverclockOnBootPref errors
+			} catch (Exception ex) {
+
+				Toast.makeText(getBaseContext(), "Error: " + ex.toString(),
+						Toast.LENGTH_LONG).show();
+
+				Log.d("VogueTools", ex.toString());
+			}
+
+		}
+	};
 
 	
 }

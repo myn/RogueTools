@@ -20,10 +20,11 @@ import android.widget.Toast;
 public class Preferences {
 	
 
-	private static final String PREFS_NAME = "VogueTools";
-	
+	private static final String PREFS_NAME = "VogueTools";  // used as main key	for SharedPreferences
 	public static final Boolean DEBUG = false;  // flag to enable/disable debugging
+	
 
+	// #### Clock Speed Preferences ####
 	public static Boolean setClockSpeedPref(int freq, Context appContext) {
 
 		// setup value to return
@@ -78,6 +79,58 @@ public class Preferences {
 
 	}
 
+	
+	// #### On Boot Preferences ####
+	public static Boolean getOverclockOnBootPref(Context appContext) {
+
+		// setup value to return		
+		Boolean returnValue = false;			 
+
+		try {
+			
+			SharedPreferences settings = appContext.getSharedPreferences( PREFS_NAME, 2);	// 2 = MODE_WORLD_WRITEABLE
+			
+			
+			Boolean OverClockOnBoot = settings.getBoolean("overClockOnBootPref", false);
+
+			return OverClockOnBoot;
+
+		} catch (Exception ex) {
+			Log.d("getOverclockOnBootPref", ex.toString());
+		}
+
+		return returnValue;
+
+	}
+	
+	public static Boolean setOverclockOnBootPref(Boolean setting, Context appContext) {
+
+		// setup value to return
+		Boolean returnValue = false;
+		
+		try {			
+			
+			// Save user preferences. We need an Editor object to
+			// make changes. All objects are from android.context.Context
+			
+			SharedPreferences settings = appContext.getSharedPreferences(PREFS_NAME, 2 ); // 2 = MODE_WORLD_WRITEABLE
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean("overClockOnBootPref", setting);
+
+			// commit edits
+			editor.commit();
+
+			// if successful, lets report that all went well
+			returnValue = true;
+
+		} catch (Exception ex) {
+			Log.d("setOverclockOnBootPref", ex.toString());
+		}
+
+		return returnValue;
+
+	}
+	
 	
 	
 	/*
