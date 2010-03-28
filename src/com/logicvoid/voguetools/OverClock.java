@@ -9,18 +9,18 @@ import java.io.InputStream;
 
 import android.util.Log;
 
-
 /**
- * @author Derek Reynolds (myn) 
+ * @author Derek Reynolds (myn)
  * 
  */
 public class OverClock {
+	private static final String TAG = "OverClock";
 
-	
 	// Public methods
-	
+
 	/**
-	 * @param freq : Frequency you wish to set clock speed to
+	 * @param freq
+	 *            : Frequency you wish to set clock speed to
 	 * 
 	 */
 	public static Boolean setClockSpeed(int freq) {
@@ -73,45 +73,44 @@ public class OverClock {
 			}
 
 		} catch (Exception ex) {
-			Log.d("setClockSpeed", ex.toString());
+			Log.e(TAG, "Exception in setClockSpeed", ex);
 		}
 
 		return returnValue;
 	}
-	public static String getClockSpeed()
-	{
+
+	public static String getClockSpeed() {
 		// setup value to return
 		String returnValue = "";
-	
+
 		try {
-			
+
 			// Get current CPU Speed trimming whitespace
-			String CPUSpeed = ReadFile("/sys/module/clock_7x00/parameters/a11").trim();
-			
+			String CPUSpeed = ReadFile("/sys/module/clock_7x00/parameters/a11")
+					.trim();
+
 			// Unable to retrieve retrieve CPU Speed via reading file
-			if (CPUSpeed.length() == 0) {				
+			if (CPUSpeed.length() == 0) {
 				returnValue = "";
-			}
-			else
-			{
+			} else {
 				returnValue = CPUSpeed;
 			}
-			
+
 		} catch (Exception ex) {
-			Log.d("getClockSpeed", ex.toString());
-			returnValue = "";
+			Log.e(TAG, "Exception in getClockSpeed", ex);
+
 		}
-		
-		return returnValue;		
-	
+
+		return returnValue;
+
 	}
 
-	
 	// Private methods
 	/**
-	 * @param filePath : Full path to file to read
+	 * @param filePath
+	 *            : Full path to file to read
 	 */
-		private static String ReadFile(String filePath) {
+	private static String ReadFile(String filePath) {
 		ProcessBuilder cmd;
 		String result = "";
 
@@ -131,11 +130,10 @@ public class OverClock {
 			in.close();
 		} catch (IOException ex) {
 			ex.printStackTrace();
-			Log.d("ReadFile", ex.toString());
+			Log.e(TAG, "Exception in ReadFile", ex);
 
 		}
 		return result;
 	}
-
 
 }

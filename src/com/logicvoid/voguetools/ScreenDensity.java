@@ -12,6 +12,8 @@ import android.content.Context;
  */
 public class ScreenDensity {
 
+	private static final String TAG = "ScreenDensity";
+
 	public static int getDensityDPI(Context context) {
 
 		int returnValue = 0;
@@ -29,7 +31,7 @@ public class ScreenDensity {
 			returnValue = screenDensityDpi;
 
 		} catch (Exception ex) {
-			Log.d("getDensityDPI", ex.toString());
+			Log.e(TAG, "Exception in getDensityDPI", ex);
 		}
 
 		return returnValue;
@@ -43,9 +45,9 @@ public class ScreenDensity {
 		try {
 
 			// TODO add set density code here
-			
+
 		} catch (Exception ex) {
-			Log.d("setDensityDPI", ex.toString());
+			Log.e(TAG, "Exception in setDensityDPI", ex);
 		}
 
 		return returnValue;

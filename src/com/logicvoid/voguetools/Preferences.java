@@ -18,10 +18,10 @@ import android.widget.Toast;
  * 
  */
 public class Preferences {
-	
+	private static final String TAG = "Preferences";	
 
-	private static final String PREFS_NAME = "VogueTools";  // used as main key	for SharedPreferences
-	public static final Boolean DEBUG = false;  // flag to enable/disable debugging
+	private static final String PREFS_NAME = "preferences";  // used as main key	for SharedPreferences
+	public static final Boolean DEBUG = true;  // flag to enable/disable debugging
 	
 
 	// #### Clock Speed Preferences ####
@@ -48,7 +48,7 @@ public class Preferences {
 			returnValue = true;
 
 		} catch (Exception ex) {
-			Log.d("setClockSpeedPref", ex.toString());
+			Log.e(TAG,"Exception in setClockSpeedPref", ex);
 		}
 
 		return returnValue;
@@ -72,7 +72,7 @@ public class Preferences {
 			return clockSpeed;
 
 		} catch (Exception ex) {
-			Log.d("getClockSpeedPref", ex.toString());
+			Log.e(TAG,"Exception in getClockSpeedPref", ex);
 		}
 
 		return returnValue;
@@ -96,7 +96,7 @@ public class Preferences {
 			return OverClockOnBoot;
 
 		} catch (Exception ex) {
-			Log.d("getOverclockOnBootPref", ex.toString());
+			Log.e(TAG,"Exception in getOverclockOnBootPref", ex);
 		}
 
 		return returnValue;
@@ -193,7 +193,7 @@ public class Preferences {
 			}
 
 		} catch (Exception ex) {
-			Log.d("WriteToFile", ex.toString());
+			Log.e(TAG,"Exception in WriteToFile", ex);
 		}
 
 		return returnValue;
@@ -256,7 +256,7 @@ public class Preferences {
 			in.close();
 		} catch (IOException ex) {
 			ex.printStackTrace();
-			Log.d("ReadFile", ex.toString());
+			Log.e(TAG,"Exception in ReadFile", ex);
 
 		}
 		return result;
