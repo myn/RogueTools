@@ -126,6 +126,9 @@ public class MainActivity extends TabActivity {
 					}
 				});
 
+		// set the max clockspeed threshold for the device
+		OverClockSeekBar.setMax(device.ClockSpeedMaxThreshold());
+		
 		// initialize Over Clock SeekBar to current CPU clock speed
 		OverClockSeekBar.setProgress(Integer.parseInt(CPUSpeed));
 

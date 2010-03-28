@@ -30,13 +30,11 @@ public class Device {
 	private String modelFullName = "";
 	private ModelShortName modelShortName = ModelShortName.UNKNOWN;
 
-	
-
 	// Public methods
 	public String getModelFullName() {
 		return modelFullName;
 	}
-	
+
 	public ModelShortName getModelShortName() {
 		return modelShortName;
 	}
@@ -52,15 +50,41 @@ public class Device {
 		return returnValue;
 	}
 
-	
-	
-	
+	/*
+	 * @return The maximum clock threshold one should overclock to per device
+	 */
+
+	public int ClockSpeedMaxThreshold() {
+
+		switch (modelShortName) {
+		case Vogue:
+			return 600;
+		case Kaiser:
+			return 600;
+		case Polaris:
+			return 600;
+		case Diamond:
+			return 600;
+		case Raphael:
+			// (makkonen) Some people have reported stability on raphael up to
+			// 720, I think. I think mine would reboot within 30 seconds at 650,
+			// though.
+			return 750;
+		case Blackstone:
+			return 600;
+		case Topaz:
+			return 600;
+		case Rhodium:
+			return 600;
+		default:
+			return 0;
+
+		}
+	}
+
 	// Private helper methods
-	
-	
-	/**
-	 * Returns Device Model
-	 * 
+
+	/*
 	 * @return The model full name of the device or NULL if not found
 	 */
 	private String retrieveModelFullName() {
@@ -100,8 +124,6 @@ public class Device {
 		return line;
 	}
 
-	
-
 	private ModelShortName retrieveModelShortName() {
 		if (modelFullName.toLowerCase().contains("vogue")) {
 			return ModelShortName.Vogue;
@@ -124,5 +146,4 @@ public class Device {
 		}
 	}
 
-	
 }
