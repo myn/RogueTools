@@ -71,6 +71,13 @@ public class MainActivity extends TabActivity {
 		
 		
 		
+		/* 
+		 * Display EULA
+		 * 
+		 */
+		Eula.show(this);
+		
+		
 		/*
 		 * 
 		 * OverClock Handling

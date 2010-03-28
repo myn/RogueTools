@@ -2,4 +2,7 @@
 <resources>
     <string name="hello">Hello World, MainActivity!</string>
     <string name="app_name">Vogue Tools</string>
+<string name="eula_title">License / Disclaimer</string>
+<string name="eula_accept">Accept</string>
+<string name="eula_refuse">Refuse</string>
 </resources>
