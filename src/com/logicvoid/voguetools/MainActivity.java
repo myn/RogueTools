@@ -4,7 +4,6 @@ package com.logicvoid.voguetools;
 
 import android.app.Activity;
 import android.app.TabActivity;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -51,35 +50,31 @@ public class MainActivity extends TabActivity {
 
 		mTabHost.setCurrentTab(0);
 
-		
 		/*
 		 * Confirm Device Comparability
 		 */
-		
+
 		Device device = new Device();
-		if(!device.IsDeviceCompatible())
-		{
+		if (!device.IsDeviceCompatible()) {
 			// This device is not compatible with this program
 			// TODO: present message stating device is not compatible
 			return;
 		}
-				
+
 		if (DEBUG)
 			Toast.makeText(getBaseContext(),
 					"Current Device: " + device.getModelShortName().toString(),
 					Toast.LENGTH_LONG).show();
-		
-		
-		
-		/* 
-		 * Display EULA
-		 * 
-		 */
-		Eula.show(this);
+
 		
 		
 		/*
-		 * 
+		 * Display EULA
+		 */
+		Eula.show(this);
+		
+
+		/*
 		 * OverClock Handling
 		 */
 
@@ -128,7 +123,7 @@ public class MainActivity extends TabActivity {
 
 		// set the max clockspeed threshold for the device
 		OverClockSeekBar.setMax(device.ClockSpeedMaxThreshold());
-		
+
 		// initialize Over Clock SeekBar to current CPU clock speed
 		OverClockSeekBar.setProgress(Integer.parseInt(CPUSpeed));
 
