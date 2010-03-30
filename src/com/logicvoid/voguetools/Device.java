@@ -40,10 +40,16 @@ public class Device {
 
 	public Boolean IsDeviceCompatible() {
 
-		Boolean returnValue = true;
+		Boolean returnValue = false;
 
-		if (modelShortName == ModelShortName.UNKNOWN) {
-			returnValue = false;
+		if (modelShortName == ModelShortName.Vogue) {
+			returnValue = true;
+		}
+		else if(modelShortName == ModelShortName.Kaiser) {
+			returnValue = true;
+		}
+		else if(modelShortName == ModelShortName.Polaris) {
+			returnValue = true;
 		}
 
 		return returnValue;
