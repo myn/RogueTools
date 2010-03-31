@@ -3,6 +3,7 @@ package com.logicvoid.voguetools;
 //import com.myn.tools.test.R;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.TabActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,13 +52,13 @@ public class MainActivity extends TabActivity {
 		mTabHost.setCurrentTab(0);
 
 		/*
-		 * Confirm Device Comparability
+		 * Confirm Device Compatibility
 		 */
 
 		Device device = new Device();
 		if (!device.IsDeviceCompatible()) {
-			// This device is not compatible with this program
-			// TODO: present message stating device is not compatible
+			// This device is not Compatible with this program
+			Alerts.DeviceNotCompatible(this);
 			return;
 		}
 
@@ -72,8 +73,9 @@ public class MainActivity extends TabActivity {
 		 * Display EULA
 		 */
 		Eula.show(this);
-		
 
+		
+		
 		/*
 		 * OverClock Handling
 		 */
@@ -142,6 +144,9 @@ public class MainActivity extends TabActivity {
 					"Current Pref: " + String.valueOf(prefCurrentCPUSpeed),
 					Toast.LENGTH_LONG).show();
 		// Preferences test end
+		
+		
+		
 
 		/*
 		 * 
