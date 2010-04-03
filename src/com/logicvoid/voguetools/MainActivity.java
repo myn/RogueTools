@@ -112,7 +112,7 @@ public class MainActivity extends TabActivity {
 
 					public void onProgressChanged(SeekBar seekBar,
 							int progress, boolean fromUser) {
-						seekBarValue.setText(String.valueOf(progress));
+						seekBarValue.setText(String.valueOf(progress) + " MHz");
 					}
 
 					public void onStartTrackingTouch(SeekBar seekBar) {
@@ -162,11 +162,6 @@ public class MainActivity extends TabActivity {
 		// Get current LCD Density
 		int screenDensityDpi = ScreenDensity.getDensityDPI(getBaseContext());
 
-		// Initialize LCD Density Seekbar to current Density
-		LCDDensitySeekBar.setProgress(screenDensityDpi);
-
-		// Display initialized value of LCD Density SeekBar
-		seekBarLCDDensityValue.setText(String.valueOf(screenDensityDpi));
 
 		// LCD Density SeekBar Handling
 		LCDDensitySeekBar
@@ -175,7 +170,7 @@ public class MainActivity extends TabActivity {
 					public void onProgressChanged(SeekBar seekBar,
 							int progress, boolean fromUser) {
 						seekBarLCDDensityValue
-								.setText(String.valueOf(progress));
+								.setText(String.valueOf(progress) + " DPI");
 					}
 
 					public void onStartTrackingTouch(SeekBar seekBar) {
@@ -185,6 +180,10 @@ public class MainActivity extends TabActivity {
 					}
 				});
 
+
+		// Initialize LCD Density Seekbar to current Density
+		LCDDensitySeekBar.setProgress(screenDensityDpi);
+		
 	}
 
 	/*
