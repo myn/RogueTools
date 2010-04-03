@@ -3,7 +3,6 @@ package com.logicvoid.voguetools;
 //import com.myn.tools.test.R;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.TabActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -193,8 +192,7 @@ public class MainActivity extends TabActivity {
 	 * "Set Clock Speed" button
 	 */
 	private OnClickListener btnSetClockSpeed_OnClick = new OnClickListener() {
-		public void onClick(View v) {
-			String actionText = "";
+		public void onClick(View v) {			
 
 			try {
 				// Get value of OverClock SeekBar
@@ -202,8 +200,9 @@ public class MainActivity extends TabActivity {
 				int freq = OverClockSeekBar.getProgress();
 
 				if (OverClock.setClockSpeed(freq) == true) {
-					actionText = "Changed clock frequency to "
-							+ String.valueOf(freq) + " MHz";
+					
+					Alerts.ClockSpeedSuccess(me, freq);
+					
 
 					// Save preferences
 					// TODO: confirm preferences were set correctly by checking
@@ -212,17 +211,18 @@ public class MainActivity extends TabActivity {
 							.setClockSpeedPref(freq, getApplicationContext());
 					// Preferences.WriteToFile("/data/data/com.logicvoid.voguetools/prefClockSpeed",String.valueOf(freq));
 
-				} else {
-					actionText = "Unable to change clock frequency";
+				} else {					
+					Toast.makeText(getBaseContext(), "Unable to change clock frequency", Toast.LENGTH_LONG)
+					.show();
 				}
 
 			} catch (Exception e) {
 
-				actionText = "Error: " + e.toString();
+				Toast.makeText(getBaseContext(), "Error: " + e.toString(), Toast.LENGTH_LONG)
+				.show();				
 			}
 
-			Toast.makeText(getBaseContext(), actionText, Toast.LENGTH_LONG)
-					.show();
+			
 
 		}
 	};
@@ -244,21 +244,20 @@ public class MainActivity extends TabActivity {
 
 				if (ScreenDensity.setDensityDPI(screenDensityDpi)) {
 					// Successfully set Density DPI
+					Alerts.LCDDensitySuccess(me,screenDensityDpi);					
 					actionText = "Changed Density DPI to "
 							+ String.valueOf(screenDensityDpi);
 
 				} else {
-					// We unable to set Density DPI
+					// Unable to set Density DPI
 					actionText = "Unable to change Density DPI";
 
 				}
 
 			} catch (Exception ex) {
-				actionText = "Error: " + ex.toString();
-			}
-
-			Toast.makeText(getBaseContext(), actionText, Toast.LENGTH_LONG)
-					.show();
+				
+				Toast.makeText(getBaseContext(), "Error: " + ex.toString(), Toast.LENGTH_LONG).show();
+			}			
 
 		}
 	};

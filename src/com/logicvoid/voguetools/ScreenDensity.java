@@ -68,8 +68,7 @@ public class ScreenDensity {
 				String strDensity = "ro.sf.lcd_density = " + String.valueOf(density);
 			
 				// mount system as read/write so we can access the /system/build.prop	
-				os.writeBytes("mount -o remount,rw /system\n");	
-				
+				os.writeBytes("mount -o remount,rw /system\n");					
 
 				//os.writeBytes("echo \"text\"|cat - /system/blah.txt > /tmp/out && mv /tmp/out /system/blah.txt\n");	
 				
@@ -105,7 +104,5 @@ public class ScreenDensity {
 
 		return returnValue;
 	}
-
-
 
 }

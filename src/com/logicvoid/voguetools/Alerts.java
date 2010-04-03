@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
+
 public class Alerts {
 
 	/*
@@ -64,5 +65,62 @@ public class Alerts {
 		alert.show();
 
 	}
+	
+	
+
+
+	public static void LCDDensitySuccess(final Activity activity, int density) {
+
+		AlertDialog.Builder alt_bld = new AlertDialog.Builder(activity);
+		alt_bld
+				.setMessage(
+						"Your Density DPI has been changed to: " + String.valueOf(density) + "\n\nPlease reboot for this change to take effect." )
+				.setCancelable(false).setPositiveButton("OK",
+						new DialogInterface.OnClickListener() {
+
+							public void onClick(DialogInterface dialog, int id) {
+								// Action for 'OK' Button
+								// Close application
+								
+								
+								
+
+							}
+						});
+		AlertDialog alert = alt_bld.create();
+		// Title for AlertDialog
+		alert.setTitle("Density DPI Changed");
+		// Icon for AlertDialog
+		alert.setIcon(R.drawable.icon);
+		alert.show();
+
+	}
+
+
+
+	public static void ClockSpeedSuccess(final Activity activity, int freq) {
+
+		AlertDialog.Builder alt_bld = new AlertDialog.Builder(activity);
+		alt_bld
+				.setMessage(
+						"Your clock speed has been changed to: " + String.valueOf(freq) + "MHz\n\nThis change will take effect upon your phone sleeping." )
+				.setCancelable(false).setPositiveButton("OK",
+						new DialogInterface.OnClickListener() {
+
+							public void onClick(DialogInterface dialog, int id) {
+								// Action for 'OK' Button
+								// Close application
+								
+							}
+						});
+		AlertDialog alert = alt_bld.create();
+		// Title for AlertDialog
+		alert.setTitle("Clock Speed Changed");
+		// Icon for AlertDialog
+		alert.setIcon(R.drawable.icon);
+		alert.show();
+
+	}
+	
 
 }

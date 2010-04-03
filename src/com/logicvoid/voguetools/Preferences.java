@@ -7,8 +7,6 @@ import java.io.InputStream;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.Toast;
-
 
 
 
@@ -21,7 +19,7 @@ public class Preferences {
 	private static final String TAG = "Preferences";	
 
 	private static final String PREFS_NAME = "preferences";  // used as main key	for SharedPreferences
-	public static final Boolean DEBUG = true;  // flag to enable/disable debugging
+	public static final Boolean DEBUG = false;  // flag to enable/disable debugging
 	
 
 	// #### Clock Speed Preferences ####
