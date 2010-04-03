@@ -54,6 +54,7 @@ public class Device {
 
 		return returnValue;
 	}
+	
 
 	/*
 	 * @return The maximum clock threshold one should overclock to per device

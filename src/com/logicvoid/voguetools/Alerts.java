@@ -103,7 +103,7 @@ public class Alerts {
 		AlertDialog.Builder alt_bld = new AlertDialog.Builder(activity);
 		alt_bld
 				.setMessage(
-						"Your clock speed has been changed to: " + String.valueOf(freq) + "MHz\n\nThis change will take effect upon your phone sleeping." )
+						"Your clock speed has been changed to: " + String.valueOf(freq) + " MHz\n\nThis change will take effect upon your phone sleeping." )
 				.setCancelable(false).setPositiveButton("OK",
 						new DialogInterface.OnClickListener() {
 
