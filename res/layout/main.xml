@@ -58,10 +58,46 @@
 				<!-- Tab 2 Content End -->
 
 			</LinearLayout>
+			
+			
+
+			<LinearLayout android:orientation="vertical"
+				android:layout_width="fill_parent" android:layout_height="fill_parent"
+				android:id="@+id/tabview3" android:paddingLeft="10px" android:paddingRight="10px" android:paddingTop="10px">
+			
+				<!-- Tab 3 Content Start -->
+			
+						
+				<TextView android:id="@+id/tvAboutAppName"
+					android:layout_width="fill_parent" android:layout_height="30px"
+					android:text="@string/app_name" android:gravity="center"
+					android:textSize="23px">
+				</TextView>
+				
+				
+				<TextView android:text="@+id/tvVersion" android:id="@+id/tvVersion"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:gravity="center" android:layout_marginBottom="20px"></TextView>
+			
+			
+				<TextView android:text="@+id/tvAboutMiddle" android:id="@+id/tvAboutMiddle"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:gravity="center" android:layout_marginBottom="20px"></TextView>
+			
+			
+				<ImageButton android:id="@+id/btnPaypal"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:background="@drawable/paypal_donate_button" android:scaleType="center"
+					android:layout_gravity="center"></ImageButton>
+
+			
+				<!-- Tab 3 Content End -->
+			
+
+			</LinearLayout>
 
 
-			<TextView android:id="@+id/tabview3" android:layout_width="fill_parent"
-				android:layout_height="fill_parent" android:text="tabview3" />
+			
 		</FrameLayout>
 	</LinearLayout>
 </TabHost>

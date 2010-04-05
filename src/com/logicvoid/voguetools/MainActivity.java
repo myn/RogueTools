@@ -2,8 +2,11 @@ package com.logicvoid.voguetools;
 
 //import com.myn.tools.test.R;
 
+
 import android.app.Activity;
 import android.app.TabActivity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -184,7 +188,29 @@ public class MainActivity extends TabActivity {
 		// Initialize LCD Density Seekbar to current Density
 		LCDDensitySeekBar.setProgress(screenDensityDpi);
 		
-	}
+	
+	/*
+	 * About Tab Handling
+	 */
+		    
+	    
+		// Display version
+		TextView tvVersion = (TextView) findViewById(R.id.tvVersion);
+		tvVersion.setText(Application.getAppVersionCode(getApplicationContext()));
+		
+		// Populate about middle content		
+		TextView tvAboutMiddle = (TextView) findViewById(R.id.tvAboutMiddle);
+		tvAboutMiddle.setText("Thanks so much for trying out " + getString(R.string.app_name) +"!\n\n" +
+				"Author: Derek Reynolds\n" +
+				"Contact: myn_2000@yahoo.com\n\n" +
+				"Special Thanks to the xda-developers community\n\n");
+
+		// wire up Paypal button with on click event		
+		ImageButton btnPayPal = (ImageButton) findViewById(R.id.btnPaypal);
+		btnPayPal.setOnClickListener(btnPayPal_OnClick);
+		
+	
+	}  // end onCreate
 
 	/*
 	 * Create an anonymous class to act as a button click listener for
@@ -324,5 +350,35 @@ public class MainActivity extends TabActivity {
 
 		}
 	};
+	
+    
+    /*
+	 * Create an anonymous class to act as a button click listener for
+	 * "Paypal" button
+	 */
+	private OnClickListener btnPayPal_OnClick = new OnClickListener() {
+		public void onClick(View v) {			
+
+			try {
+				
+				String url = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DANEPPXLYXL4J";
+				Intent i = new Intent(Intent.ACTION_VIEW);
+				Uri u = Uri.parse(url);
+				i.setData(u);
+				startActivity(i);
+				
+					
+
+			} catch (Exception e) {
+
+				Toast.makeText(getBaseContext(), "Error: " + e.toString(), Toast.LENGTH_LONG)
+				.show();				
+			}
+
+			
+
+		}
+	};
+    
 
 }
