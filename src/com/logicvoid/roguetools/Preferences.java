@@ -1,4 +1,4 @@
-package com.logicvoid.voguetools;
+package com.logicvoid.roguetools;
 
 import java.io.DataOutputStream;
 import java.io.IOException;

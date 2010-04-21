@@ -1,4 +1,4 @@
-package com.logicvoid.voguetools;
+package com.logicvoid.roguetools;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -18,7 +18,7 @@ public class Application {
 
 			PackageManager pm = context.getPackageManager();
 
-			PackageInfo pi = pm.getPackageInfo("com.logicvoid.voguetools", 0);
+			PackageInfo pi = pm.getPackageInfo("com.logicvoid.roguetools", 0);
 
 			returnValue = pi.versionName;
 

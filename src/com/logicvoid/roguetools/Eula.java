@@ -15,7 +15,7 @@
  */
 
 
-package com.logicvoid.voguetools;
+package com.logicvoid.roguetools;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.Closeable;
+
+import com.logicvoid.roguetools.R;
 
 /**
  * Displays an EULA ("End User License Agreement") that the user has to accept before

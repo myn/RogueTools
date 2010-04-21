@@ -1,4 +1,4 @@
-package com.logicvoid.voguetools;
+package com.logicvoid.roguetools;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -20,11 +20,11 @@ public class OnBootReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		if ("android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
 			if (DEBUG)
-				Log.d("VogueTools", "Got the Boot Event>>>");
+				Log.d(TAG, "Got the Boot Event>>>");
 			// Do your stuff for example, start a background service directly
 			// here
 			if (DEBUG)
-				Toast.makeText(context, "DEBUG: VogueTools_BOOT_COMPLETED",
+				Toast.makeText(context, "DEBUG: RogueTools_BOOT_COMPLETED",
 						Toast.LENGTH_LONG).show();
 
 			// If the user has configured to set Clock Speed on boot
@@ -46,48 +46,48 @@ public class OnBootReceiver extends BroadcastReceiver {
 					 */
 
 					// String prefClockSpeed =
-					// Preferences.ReadFromFile("/data/data/com.logicvoid.voguetools/prefClockSpeed");
+					// Preferences.ReadFromFile("/data/data/com.logicvoid.roguetools/prefClockSpeed");
 					// get current clockSpeed
 					if (DEBUG)
-						Log.d("VogueTools", "Getting current clockspeed");
+						Log.d(TAG, "Getting current clockspeed");
 					String CurrentClockSpeed = OverClock.getClockSpeed();
 
 					// get clockSpeed configuration preference using current
 					// clock speed as default if no preferences have been set
 					if (DEBUG)
-						Log.d("VogueTools",
+						Log.d(TAG,
 								"Getting prefClockSpeed preferences");
 					int prefClockSpeed = Preferences.getClockSpeedPref(Integer
 							.valueOf(CurrentClockSpeed), context);
 
 					if (DEBUG)
-						Log.d("VogueTools", "Casting prefClockSpeed to int");
+						Log.d(TAG, "Casting prefClockSpeed to int");
 					int freq = Integer.valueOf(prefClockSpeed);
 
 					if (DEBUG)
-						Log.d("VogueTools", "setClockSpeed("
+						Log.d(TAG, "setClockSpeed("
 								+ String.valueOf(freq) + ")");
 					if (OverClock.setClockSpeed(freq) == true) {
 						if (DEBUG)
-							Log.d("VogueTools", "Changed clock frequency");
+							Log.d(TAG, "Changed clock frequency");
 
-						actionText = "VogueTools: Changed clock freq to "
+						actionText = "RogueTools: Changed clock freq to "
 								+ String.valueOf(freq) + " MHz";
 
 					} else {
 						if (DEBUG)
-							Log.d("VogueTools",
+							Log.d(TAG,
 									"Unable to change clock frequency");
-						actionText = "VogueTools: Unable to change clock frequency";
+						actionText = "RogueTools: Unable to change clock frequency";
 					}
 
 				} catch (Exception e) {
 					Log.e(TAG, "Exception in OnBootReceiver" ,e);
-					actionText = "VougeTools Error: " + e.toString();
+					actionText = "RogueTools Error: " + e.toString();
 				}
 				Toast.makeText(context, actionText, Toast.LENGTH_LONG).show();
 				if (DEBUG)
-					Log.d("VogueTools", "Finished with OnBootReceiver");
+					Log.d(TAG, "Finished with OnBootReceiver");
 
 			}
 

@@ -1,4 +1,6 @@
-package com.logicvoid.voguetools;
+package com.logicvoid.roguetools;
+
+import com.logicvoid.roguetools.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

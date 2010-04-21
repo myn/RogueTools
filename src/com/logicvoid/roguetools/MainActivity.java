@@ -1,7 +1,9 @@
-package com.logicvoid.voguetools;
+package com.logicvoid.roguetools;
 
 //import com.myn.tools.test.R;
 
+
+import com.logicvoid.roguetools.R;
 
 import android.app.Activity;
 import android.app.TabActivity;
@@ -141,7 +143,7 @@ public class MainActivity extends TabActivity {
 				getApplicationContext());
 
 		// String prefCurrentCPUSpeed =
-		// Preferences.ReadFromFile("/data/data/com.logicvoid.voguetools/prefClockSpeed");
+		// Preferences.ReadFromFile("/data/data/com.logicvoid.roguetools/prefClockSpeed");
 		if (DEBUG)
 			Toast.makeText(getBaseContext(),
 					"Current Pref: " + String.valueOf(prefCurrentCPUSpeed),
@@ -234,7 +236,7 @@ public class MainActivity extends TabActivity {
 					// for return value
 					Preferences
 							.setClockSpeedPref(freq, getApplicationContext());
-					// Preferences.WriteToFile("/data/data/com.logicvoid.voguetools/prefClockSpeed",String.valueOf(freq));
+					// Preferences.WriteToFile("/data/data/com.logicvoid.roguetools/prefClockSpeed",String.valueOf(freq));
 
 				} else {					
 					Toast.makeText(getBaseContext(), "Unable to change clock frequency", Toast.LENGTH_LONG)
