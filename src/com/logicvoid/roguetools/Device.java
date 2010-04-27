@@ -15,7 +15,7 @@ public class Device {
 
 	// Enums
 	public enum ModelShortName {
-		Vogue, Kaiser, Polaris, Diamond, Raphael, Blackstone, Topaz, Rhodium, UNKNOWN
+		Vogue, Kaiser, Polaris, Nike, Diamond, Raphael, Blackstone, Topaz, Rhodium, UNKNOWN
 	}
 
 	// Constructors
@@ -51,6 +51,9 @@ public class Device {
 		else if(modelShortName == ModelShortName.Polaris) {
 			returnValue = true;
 		}
+		else if(modelShortName == ModelShortName.Nike) {
+			returnValue = true;
+		}
 
 		return returnValue;
 	}
@@ -68,6 +71,8 @@ public class Device {
 		case Kaiser:
 			return 600;
 		case Polaris:
+			return 600;
+		case Nike:
 			return 600;
 		case Diamond:
 			return 600;
@@ -137,6 +142,8 @@ public class Device {
 			return ModelShortName.Kaiser;
 		} else if (modelFullName.toLowerCase().contains("polaris")) {
 			return ModelShortName.Kaiser;
+		} else if (modelFullName.toLowerCase().contains("nike")) {
+			return ModelShortName.Nike;
 		} else if (modelFullName.toLowerCase().contains("diamond")) {
 			return ModelShortName.Diamond;
 		} else if (modelFullName.toLowerCase().contains("raphael")) {
